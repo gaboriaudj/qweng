@@ -1,7 +1,7 @@
 CCRED=\033[0;31m
 CCEND=\033[0m
 
-localConfig       := ~/.config/qweng/vanityURLs.conf
+localConfig       := ./vanityURLs.conf
 include           $(localConfig)
 
 .PHONY: help
@@ -17,7 +17,7 @@ config: ## Modify the .vanityURLS.conf before running setup
 	@vi $(localConfig)
 
 setup: ## Setup the environment
-	cp vanityURLs.conf ~/.vanityURLs.conf
+	cp vanityURLS.conf ~/.vanityURLS.conf
 
 	mkdir -p $(SCRIPT_DIR)
 	cp scripts/* $(SCRIPT_DIR)
@@ -34,10 +34,10 @@ setup: ## Setup the environment
 	echo "  X-Robots-Tag: noindex" >> build/_headers
 	echo "  X-Content-Type-Options: nosniff" >> build/_headers
 
-	rm dynamic.lnk 2> /dev/null || true
+	rm dynamic.lnk 2> /dev/null
 	echo "/github/* https://github.com/bhdicaire/:splat" > dynamic.lnk
 
-	rm static.lnk 2> /dev/null || true
+	rm static.lnk 2> /dev/null
 	echo "/ https://bhdicaire.com/" > static.lnk
 	echo "/linkedin https://linkedin.com/in/bhdicaire/" >> static.lnk
 	echo "/x https://twitter.com/BHDicaire/" >> static.lnk
